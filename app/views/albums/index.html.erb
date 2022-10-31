@@ -1,0 +1,7 @@
+<h1>Albums that includes the songs you like</h1>
+
+<% @albums.each do |album| %>
+    <ul>
+        <li><%= link_to "#{album.name}", user_album_path(@user, album.id) %></li>
+    </ul>
+<% end %>

@@ -1,0 +1,12 @@
+<div>
+    <h1><%= @song.name %></h1>
+
+    <h3>Artist</h3>
+    <p><%= link_to "#{@song.artist.name}", user_artist_path(@user, @song.artist.id) %></p>
+    <h3>Album</h3>
+    <li><%= link_to "#{@song.album.name}", user_album_path(@user, @song.album.id) %></li>
+
+    <div>
+        <%= link_to 'Delete Song', user_song_path, :method => 'delete', :data => {:confirm => 'Are you sure?'} %>
+    </div>
+</div>

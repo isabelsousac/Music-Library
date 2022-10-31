@@ -1,0 +1,6 @@
+<% if @current_user.present? %>
+    <h1>Welcome, <%= @current_user.name.capitalize %>!</h1>
+<% else %>
+    <h1>Welcome to a new music library.</h1>
+    <h3>Go to Sign up page and make an account!</h3>
+<% end %>

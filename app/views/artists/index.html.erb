@@ -1,0 +1,7 @@
+<h1>Artists that you have songs from</h1>
+
+<% @artists.each do |artist| %>
+    <ul>
+        <li><%= link_to "#{artist.name}", user_artist_path(@user, artist.id) %></li>
+    </ul>
+<% end %>

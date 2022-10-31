@@ -1,0 +1,7 @@
+<h1>Here are songs that you like</h1>
+
+<% @songs.each do |song| %>
+    <ul>
+        <li><%= link_to "#{song.name}", user_song_path(@user, song.id) %></li>
+    </ul>
+<% end %>
