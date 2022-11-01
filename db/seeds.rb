@@ -1,36 +1,57 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+playlist_tracks = RSpotify::Playlist.find_by_id('37i9dQZF1DX5Vy6DFOcx00').tracks
+
+artists = []
+albums = []
+songs = []
+
+playlist_tracks.each do |track|
+    artist_name = track.artists.first.name
+    artist_id = track.artists.first.id
+    artists << {:name => artist_name, :id => artist_id}
+
+    album_name = track.album.name
+    album_id = track.album.id
+    album_image = track.album.images.first['url']
+    album_date = track.album.release_date
+    albums << {:name => album_name, :id => album_id, :image => album_image, :released_year => album_date}
+
+    track_name = track.name
+    track_id = track.id
+    track_preview_url = track.preview_url
+    songs << {:name => track_name, :id => track_id, :preview_url => track_preview_url}
+end
 
 User.destroy_all
+Song.destroy_all
+Album.destroy_all
+Artist.destroy_all
+
 ana = User.create :name => 'ana', :email => 'ana@ga.co', :password => 'blabla'
 maria = User.create :name => 'maria', :email => 'maria@ga.co', :password => 'blabla'
-puts "#{User.count} users"
 
-Artist.destroy_all
-twenty_one_pilots = Artist.create :name => 'Twenty One Pilots', :info => 'American musical duo', :spotify_id => '3YQKmKGau1PzlVlkL1iodx'
-the_wombats = Artist.create :name => 'The Wombats', :info => 'English indie rock band', :spotify_id => ''
-the_kooks = Artist.create :name => 'The Kooks', :info => 'English pop-rock band', :spotify_id => ''
-i_prevail = Artist.create :name => 'I Prevail', :info => 'American rock band', :spotify_id => ''
+artists.each_with_index do |artist, i|
+    fetched_artist = Artist.where(spotify_id: artist[:id]).first
+    seed_artist = fetched_artist
+    if !fetched_artist 
+        seed_artist = Artist.create :name => artist[:name], :spotify_id => artist[:id]
+    end
+
+    current_album = albums[i]
+    fetched_album = Album.where(spotify_id: current_album[:id]).first
+    seed_album = fetched_album
+    if !fetched_album
+        seed_album = Album.create :name => current_album[:name], :spotify_id => current_album[:id], :image => current_album[:image], :released_year => current_album[:released_year], :artist => seed_artist
+    end
+    
+    current_song = songs[i]
+    fetched_song = Song.where(spotify_id: current_song[:id]).first
+    seed_song = fetched_song
+    if !fetched_song
+        seed_song = Song.create :name => current_song[:name], :spotify_id => current_song[:id], :preview_url => current_song[:preview_url], :artist => seed_artist, :album => seed_album
+    end
+end
+
 puts "#{Artist.count} artists"
-
-Album.destroy_all
-beautiful_people = Album.create :name => 'Beautiful People Will Ruin Your Life', :info => 'Fourth major album by The Wombats', :released_year => 2018, :artist => the_wombats
-listen = Album.create :name => 'Listen', :info => 'Fourth major album by The Kooks', :released_year => 2014, :artist => the_kooks
-vessel = Album.create :name => 'Vessel', :info => 'Third studio album by Twenty One Pilots', :released_year => 2013, :artist => twenty_one_pilots
-trauma = Album.create :name => 'TRAUMA', :info => 'Second studio album by I Prevail', :released_year => 2019, :artist => i_prevail
 puts "#{Album.count} albums"
-
-Song.destroy_all
-cheetah_tongue = Song.create :name => 'Cheetah Tongue', :artist => the_wombats, :album => beautiful_people
-sunrise = Song.create :name => 'Sunrise', :artist => the_kooks, :album => listen
-run_and_go = Song.create :name => 'The Run and Go', :artist => twenty_one_pilots, :album => vessel
-deadweight = Song.create :name => 'Deadweight', :artist => i_prevail, :album => trauma
 puts "#{Song.count} songs"
-
-ana.songs << cheetah_tongue << sunrise
-maria.songs << cheetah_tongue << deadweight << run_and_go
+puts "#{User.count} users"

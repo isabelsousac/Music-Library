@@ -17,3 +17,11 @@
 .navbar {
     --bs-navbar-hover-color: rgb(56 152 225 / 70%);
 }
+
+.bg-light {
+    background-color: #C89666;
+}
+
+body {
+    background-color: #E1B382;
+}

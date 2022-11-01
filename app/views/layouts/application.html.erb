@@ -24,6 +24,7 @@
             <% if @current_user.present? %>
               <p>Welcome, <%= @current_user.name.capitalize %></p>
               <%= link_to 'My songs', user_songs_path(@current_user), class: 'nav-link' %>
+              <%= link_to 'Feed database', new_item_path, class: 'nav-link' %>
               <%= link_to 'Sign Out', login_path, :method => 'delete', class: 'nav-link' %>
             <% else %>
               <%= link_to 'Sign Up', new_user_path, class: 'nav-link' %>

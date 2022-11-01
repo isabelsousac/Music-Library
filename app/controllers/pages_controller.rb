@@ -1,49 +1,58 @@
 class PagesController < ApplicationController
 
 	def home
+		songs = Song.all
+
+		@songs_to_be_displayed = []
+		songs.each do |song|
+			unless song.preview_url.nil?
+				@songs_to_be_displayed << song
+			end
+		end
 	end
 
 	def new_item
 	end
 
 	def create
-		# url_playlist = params[:url].split('/')[-1]
-		# playlist = RSpotify.find_by_id(url_playlist)
-		url =  params[:url].split('/')[-1]
-		@fetched_song = RSpotify::Track.find(url)
-		raise "hell"
+		fetched_song = begin
+			spotify_id = params[:url].scan(/https?:\/\/(?:open\.)?spotify\.com\/track\/(\w*)/)[0][0]
+			RSpotify::Track.find(spotify_id)
+		rescue Exception => e
+			puts e
+			flash[:alert] = "We coudn't find a song through this URL :( - Make sure you are copying a URL's track from Spotify."
+			return redirect_to new_item_path
+		end
 
-		if Song.exists?(name: @fetched_song.name)
+		if Song.exists?(spotify_id: fetched_song.id)
 			flash[:alert] = "This song is already in our database."
  		    redirect_to new_item_path
 		else
-			artist = create_artist
-			album = create_album(artist)
-			@song = Song.create :name => @fetched_song.name, :artist => artist, :album => album
+			artist = create_artist(fetched_song.artists.first)
+			album = create_album(fetched_song.album, artist)
+			song = Song.create :name => fetched_song.name, :spotify_id => fetched_song.id, :preview_url => fetched_song.preview_url, :artist => artist, :album => album
+			@current_user.songs << song
 		end
+		render :home
 	end
-
 
 	private
 	
-	def create_artist
-		artist_name = @fetched_song.artists.first.name
-		if Artist.exists?(name: artist_name)
-			Artist.where(name: artist_name).first
-		else
-			Artist.create :name => artist_name
+	def create_artist(artist)
+		fetched_artist = Artist.where(spotify_id: artist.id).first
+		if !fetched_artist 
+        	Artist.create :name => artist.name, :spotify_id => artist.id
+    	else 
+			fetched_artist
 		end
 	end
 
-	def create_album(artist)
-		song_album = @fetched_song.album
-	
-		if Album.exists?(name: song_album.name)
-			Album.where(name: song_album.name)
+	def create_album(album, artist)
+		fetched_album = Album.where(spotify_id: album.id).first
+		if !fetched_album
+			Album.create :name => album.name, :spotify_id => album.id, :image => album.images.first['url'], :artist => artist
 		else
-			album_image = song_album.images[1]
-			album_date = song_album.release_date
-			Album.create :name => song_album.name, :image => song_album.image, :released_year => song_album.date, :artist => artist
+			fetched_album
 		end
 	end
 end

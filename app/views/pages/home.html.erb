@@ -1,6 +1,21 @@
 <% if @current_user.present? %>
     <h1>Welcome, <%= @current_user.name.capitalize %>!</h1>
+
+
+    <!-- <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/<%= @songs_to_be_displayed.first.spotify_id %>?utm_source=generator" width="70%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> -->
+    <audio controls>
+        <source src="<%= @songs_to_be_displayed.first.preview_url %>" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <!-- <iframe style="border-radius:12px" src="<%= @songs_to_be_displayed.first.preview_url %>" width="70%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+    </iframe> -->
+
+
+
+
+
+
 <% else %>
-    <h1>Welcome to a new music library.</h1>
-    <h3>Go to Sign up page and make an account!</h3>
+    <h1>Welcome to our freshly made music library</h1>
+    <h3>Make an account if you don't have one, so you can enjoy more of this idea.</h3>
 <% end %>

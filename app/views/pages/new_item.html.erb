@@ -1,5 +1,9 @@
 <h3>We appreciate you help by adding new artists. Doing so, we can build a strong database and the music community can find more songs!</h3>
 
+<% flash.each do |type, msg| %>
+    <div class="alert alert-info"> <%= msg %> </div>
+<% end %>
+
 <h4>You can add a new artist by pasting here the artist's ID from Spotify.</h4>
 <p>Grabbing their ID is easy. On the artist's page on spotify, copy the weird string that if followed by the word 'artist'.</p>
 <p>It looks somthing like this: <strong>1dfeR4HaWDbWqFHLkxsg1d</strong></p>
