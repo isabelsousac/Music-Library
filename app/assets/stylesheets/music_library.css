@@ -1,9 +1,9 @@
 .img-logo {
     height: 6em;
 }
-.shadow {
+/* .shadow {
     box-shadow: 0 0.5rem 1rem rgb(84 35 35 / 15%) !important;
-}
+} */
 
 .navbar-nav {
     gap: 1em;
@@ -14,9 +14,9 @@
     justify-content: end;
 }
 
-.navbar {
+/* .navbar {
     --bs-navbar-hover-color: rgb(56 152 225 / 70%);
-}
+} */
 
 .bg-light {
     background-color: #C89666;
