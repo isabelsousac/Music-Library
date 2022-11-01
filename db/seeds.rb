@@ -12,10 +12,10 @@ maria = User.create :name => 'maria', :email => 'maria@ga.co', :password => 'bla
 puts "#{User.count} users"
 
 Artist.destroy_all
-twenty_one_pilots = Artist.create :name => 'Twenty One Pilots', :info => 'American musical duo'
-the_wombats = Artist.create :name => 'The Wombats', :info => 'English indie rock band'
-the_kooks = Artist.create :name => 'The Kooks', :info => 'English pop-rock band'
-i_prevail = Artist.create :name => 'I Prevail', :info => 'American rock band'
+twenty_one_pilots = Artist.create :name => 'Twenty One Pilots', :info => 'American musical duo', :spotify_id => '3YQKmKGau1PzlVlkL1iodx'
+the_wombats = Artist.create :name => 'The Wombats', :info => 'English indie rock band', :spotify_id => ''
+the_kooks = Artist.create :name => 'The Kooks', :info => 'English pop-rock band', :spotify_id => ''
+i_prevail = Artist.create :name => 'I Prevail', :info => 'American rock band', :spotify_id => ''
 puts "#{Artist.count} artists"
 
 Album.destroy_all

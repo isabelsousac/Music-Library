@@ -1,3 +1,19 @@
 .img-logo {
     height: 6em;
 }
+.shadow {
+    box-shadow: 0 0.5rem 1rem rgb(84 35 35 / 15%) !important;
+}
+
+.navbar-nav {
+    gap: 1em;
+    --bs-nav-link-padding-y: 0;
+}
+
+.navbar-collapse {
+    justify-content: end;
+}
+
+.navbar {
+    --bs-navbar-hover-color: rgb(56 152 225 / 70%);
+}

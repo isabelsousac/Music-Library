@@ -5,8 +5,8 @@
 <p>It looks somthing like this: <strong>1dfeR4HaWDbWqFHLkxsg1d</strong></p>
 
 <%= form_tag new_item_path do %>
-    <%= label_tag :id %>
-    <%= text_field_tag :id %>
+    <%= label_tag :url %>
+    <%= url_field_tag :url %>
 
     <%= submit_tag 'Add artist'  %>
 <% end %>
