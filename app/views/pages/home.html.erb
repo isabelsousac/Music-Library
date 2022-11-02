@@ -3,10 +3,15 @@
 
 
     <!-- <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/<%= @songs_to_be_displayed.first.spotify_id %>?utm_source=generator" width="70%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> -->
+   
+
     <audio controls>
+        <source src="<%= @songs_to_be_displayed.first.preview_url %>" type="audio/ogg">
         <source src="<%= @songs_to_be_displayed.first.preview_url %>" type="audio/mpeg">
-        Your browser does not support the audio element.
+        <source src="<%= @songs_to_be_displayed.first.preview_url %>" type="audio/wav">
     </audio>
+
+    
     <!-- <iframe style="border-radius:12px" src="<%= @songs_to_be_displayed.first.preview_url %>" width="70%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
     </iframe> -->
 
