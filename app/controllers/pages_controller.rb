@@ -21,7 +21,7 @@ class PagesController < ApplicationController
 		rescue Exception => e
 			puts e
 			flash[:alert] = "We coudn't find a song through this URL :( - Make sure you are copying a URL's track from Spotify."
-			return redirect_to new_item_path
+			redirect_to new_item_path
 		end
 
 		if Song.exists?(spotify_id: fetched_song.id)
@@ -32,8 +32,9 @@ class PagesController < ApplicationController
 			album = create_album(fetched_song.album, artist)
 			song = Song.create :name => fetched_song.name, :spotify_id => fetched_song.id, :preview_url => fetched_song.preview_url, :artist => artist, :album => album
 			@current_user.songs << song
+			flash[:notice] = "Thanks for feeding our music library!"
+			redirect_to root_path
 		end
-		render :home
 	end
 
 	private

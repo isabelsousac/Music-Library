@@ -1,23 +1,38 @@
 <% if @current_user.present? %>
     <h1>Welcome, <%= @current_user.name.capitalize %>!</h1>
 
-
-    <!-- <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/<%= @songs_to_be_displayed.first.spotify_id %>?utm_source=generator" width="70%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> -->
-   
-
-    <audio controls>
-        <source src="<%= @songs_to_be_displayed.first.preview_url %>" type="audio/ogg">
-        <source src="<%= @songs_to_be_displayed.first.preview_url %>" type="audio/mpeg">
-        <source src="<%= @songs_to_be_displayed.first.preview_url %>" type="audio/wav">
-    </audio>
-
-    
-    <!-- <iframe style="border-radius:12px" src="<%= @songs_to_be_displayed.first.preview_url %>" width="70%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
-    </iframe> -->
-
-
-
-
+    <div id="carouselExampleCaptions" class="carousel slide" data-mdb-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="<%= @songs_to_be_displayed.first.album.image %>" class="d-block w-100" alt="album1"/>
+                <div class="carousel-caption d-md-block">
+                    <h5><%= @songs_to_be_displayed.first.name %></h5>
+                    <p><%= @songs_to_be_displayed.first.album.name %></p>
+                </div>
+            </div>
+            <div class="carousel-item active">
+                <img src="<%= @songs_to_be_displayed[1].album.image %>" class="d-block w-100" alt="album2"/>
+                <div class="carousel-caption d-md-block">
+                    <h5><%= @songs_to_be_displayed[1].name %></h5>
+                    <p><%= @songs_to_be_displayed[1].album.name %></p>
+                    <audio controls>
+                        <source src="<%= @songs_to_be_displayed.first.preview_url %>" type="audio/ogg">
+                        <source src="<%= @songs_to_be_displayed.first.preview_url %>" type="audio/mpeg">
+                        <source src="<%= @songs_to_be_displayed.first.preview_url %>" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+        </div>
+        
+        <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 
 
 <% else %>
