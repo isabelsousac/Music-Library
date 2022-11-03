@@ -1,18 +1,20 @@
-<div>
+<div class="artists-index">
     <h1><%= @artist.name %></h1>
 
+    <h3 class="songs">Albums you have from this artist</h3>
+
     <% @artist.albums.each do |album| %>
-        <ul>
-            <li><h2>Album - <%= link_to "#{album.name}", user_album_path(@user, album.id) %></h2></li>
+            <h2><%= link_to "#{album.name}", album_path(album.id) %></h2>
+            <h4>Songs</h4>
             <% album.songs.each do |song| %>
                 <ul>
-                    <li><%= link_to "#{song.name}", user_song_path(@user, song.id) %></li>
+                    <li><%= link_to "#{song.name}", song_path(song.id) %></li>
                 </ul>
             <% end %>
-        </ul>
+    <% end %>
 
+    <% if @artist.info %>
         <h4>Info</h4>
-        <p><%= album.info %></p>
-
+        <p><%= @artist.info %></p>
     <% end %>
 </div>

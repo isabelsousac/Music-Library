@@ -1,7 +1,15 @@
-<h1>Albums that includes the songs you like</h1>
-
-<% @albums.each do |album| %>
-    <ul>
-        <li><%= link_to "#{album.name}", user_album_path(@user, album.id) %></li>
-    </ul>
+<% if @albums.empty? %>
+    <h1>You don't have any albums yet :( </h1>
+<% else %>
+    <h1>Albums that includes the songs you like</h1>
+    <div class='row albums-index'>
+    <% @albums.each do |album| %>
+        <div class="card col-md-4" style="width: 18rem;">
+            <%= image_tag album.image %>
+            <div class="card-body">
+                <p class="card-text"><%= link_to "#{album.name}", album_path(album.id) %></p>
+            </div>
+        </div>
+    <% end %>
+    </div>  
 <% end %>

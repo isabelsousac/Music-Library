@@ -1,16 +1,23 @@
-<h3>We appreciate you help by adding new artists. Doing so, we can build a strong database and the music community can find more songs!</h3>
+<div class="new-item-container">
+    <h3>We appreciate your help by adding new songs. Doing so, we can build a strong database and the music community can find more songs!</h3>
 
-<% flash.each do |type, msg| %>
-    <div class="alert alert-info"> <%= msg %> </div>
-<% end %>
+    <% flash.each do |type, msg| %>
+        <div class="alert alert-info"> <%= msg %> </div>
+    <% end %>
 
-<h4>You can add a new artist by pasting here the artist's ID from Spotify.</h4>
-<p>Grabbing their ID is easy. On the artist's page on spotify, copy the weird string that if followed by the word 'artist'.</p>
-<p>It looks somthing like this: <strong>1dfeR4HaWDbWqFHLkxsg1d</strong></p>
 
-<%= form_tag new_item_path do %>
-    <%= label_tag :url %>
-    <%= url_field_tag :url %>
+    <h4 style="margin-bottom: 2em;">You just need to grab the Spotify's link from the song you want.</h4>
 
-    <%= submit_tag 'Add artist'  %>
-<% end %>
+    <%= form_tag new_item_path, {:class => 'row g-3'} do %>
+        <div class="col-auto">
+            <%= label_tag 'URL', nil, class: 'form-control-plaintext' %>
+        </div>
+        <div class="col-auto">
+            <%= url_field_tag :url %>
+        </div>
+
+        <div class="col-auto">
+            <%= submit_tag 'Feed database', class: 'btn btn-primary mb-3 new-item-buttom'  %>
+        </div>
+    <% end %>
+</div>

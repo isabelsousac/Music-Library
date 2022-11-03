@@ -1,7 +1,9 @@
-<h1>Here are songs that you like</h1>
+<% if @songs.empty? %>
+    <h1>You don't have any songs liked yet :( </h1>
+    <h5 style="color: white;">You can add songs by either liking some of them on the home page or by feeding our database.</h5>
+<% else %>
 
-<% @songs.each do |song| %>
-    <ul>
-        <li><%= link_to "#{song.name}", user_song_path(@user, song.id) %></li>
-    </ul>
+    <h1>Here are songs that you like</h1>
+
+    <%= render 'index_songs' %>
 <% end %>

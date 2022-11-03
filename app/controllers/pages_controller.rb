@@ -1,14 +1,7 @@
 class PagesController < ApplicationController
 
 	def home
-		songs = Song.all
-
-		@songs_to_be_displayed = []
-		songs.each do |song|
-			unless song.preview_url.nil?
-				@songs_to_be_displayed << song
-			end
-		end
+		@song_to_be_displayed = Song.offset(rand(Song.count)).first
 	end
 
 	def new_item
@@ -26,6 +19,9 @@ class PagesController < ApplicationController
 
 		if Song.exists?(spotify_id: fetched_song.id)
 			flash[:alert] = "This song is already in our database."
+ 		    redirect_to new_item_path
+		elsif !fetched_song.preview_url
+			flash[:alert] = "Unfortunately this song doesn't have a sample track :("
  		    redirect_to new_item_path
 		else
 			artist = create_artist(fetched_song.artists.first)

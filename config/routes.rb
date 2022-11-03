@@ -5,17 +5,14 @@ Rails.application.routes.draw do
 
   resources :users, :only => [:new, :create, :index]
   
-  resources :users do
-    resources :songs
-  end
+  resources :songs
+  get '/dislike' => 'songs#dislike'
+  get '/like/:id' => 'songs#like'
+  get '/library_songs' => 'songs#library_songs'
 
-  resources :users do
-    resources :albums, :only => [:show, :index]
-  end
+  resources :albums
 
-  resources :users do
-    resources :artists
-  end
+  resources :artists
 
   get '/login' => 'sessions#new'
   post 'login' => 'sessions#create'

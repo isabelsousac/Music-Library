@@ -1,5 +1,3 @@
-<h1>Let's make you an account</h1>
-
 <% if @user.errors.any? %>
   <div class="alert alert-info">
     <div>
@@ -13,18 +11,35 @@
   </div>
 <% end %>
 
-<%= form_for @user, :html => {:class => 'mb-3'} do |f| %>
-    <%= f.label :name, :class => 'form-label' %>
-    <%= f.text_field :name, :class => 'form-control' %>
+<div class="register-photo">
+  <div class="form-container">
+    <div class="image-holder"></div>
 
-    <%= f.label :email, :class => 'form-label' %>
-    <%= f.email_field :email, :class => 'form-control' %>
+    <%= form_for @user do |f| %>
 
-    <%= f.label :password, :class => 'form-label' %>
-    <%= f.password_field :password, :class => 'form-control' %>
+      <h2 class="text-center"><strong>Create</strong> an account.</h2>
+        <div class="form-group">          
+            <%= f.text_field :name, :class => 'form-control', :placeholder => 'Name' %>
+        </div>
+      
+        <div class="form-group">
+            <%= f.email_field :email, :class => 'form-control', :placeholder => 'Email' %>
+        </div>
+      
+        <div class="form-group">
+            <%= f.password_field :password, :class => 'form-control', :placeholder => 'Password' %>
+        </div>
 
-    <%= f.label :password_confirmation, 'Confirmation', :class => 'form-label' %>
-    <%= f.password_field :password_confirmation, :class => 'form-control' %>
+        <div class="form-group">
+            <%= f.password_field :password_confirmation, :class => 'form-control', :placeholder => 'Confirm' %>
+        </div>
 
-    <%= f.submit 'Join!' %>
-<% end %>
+        <div class="form-group">
+          <%= f.submit 'Join!', :class => 'btn btn-primary btn-block mb-4' %>
+        </div>
+
+        <p>Already have an account? Sign in  <%= link_to 'here.', login_path, class: 'here' %></p>
+    <% end %>
+
+  </div>
+</div>

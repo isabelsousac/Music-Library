@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Julius+Sans+One&display=swap');
+
+*, *:before, *:after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+header {
+  width: auto;
+  height: 35vh;
+  margin-bottom: 20px;
+  background: linear-gradient(
+    to right,
+    rgba(98, 111, 209, 0.6),
+    rgba(86, 71, 143, 0.6)
+  ), asset-data-url("equalizer-wave.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 80%,
+    50% 100%,
+    0 80%
+  );
+  overflow-y: auto;
+}
+
+.img-logo {
+    height: 6em;
+}
+
+.navbar-nav {
+    gap: 1em;
+    --bs-nav-link-padding-y: 0;
+}
+
+.navbar-collapse {
+    justify-content: end;
+}
+
+.navbar {
+    --bs-navbar-hover-color: #001D3D;
+    font-weight: 500;
+}
+
+.bg-light {
+    background-color: #FFC300 !important;
+}
+
+body {
+    background-color: #000814;
+    font-family: 'Archivo Narrow', sans-serif;
+}
+
+.player-container {
+  flex-grow: 1;
+  width: auto;
+}
+
+.like-dislike-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-nav .dropdown-menu {
+  padding-left: 10px;
+}
+
+.fa-lg {
+  width: 50px;
+}
+
+.dropdown-menu {
+  --bs-dropdown-bg: #697482;
+  --bs-dropdown-border-color: rgb(110 123 136);
+}
+
+h1 {
+    color: #d2c47f;
+    font-family: 'Julius Sans One', sans-serif;
+}
+
+.player-background {
+    background-color: #705775;
+    height: 15em;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+audio {
+    width: 100%;
+}
+
+.album-player {
+    width: 100%;
+}
+
+.register-photo {
+    background: #282d67;
+    padding:80px 0;
+  }
+  
+  .register-photo .image-holder {
+    display:table-cell;
+    width:auto;
+    background-image: asset-data-url("equalizer-wave.jpg");
+    background-size: cover;
+    background-repeat: round;
+  }
+  
+  .register-photo .form-container {
+    display:table;
+    max-width:900px;
+    width:90%;
+    margin:0 auto;
+    box-shadow: 1px 1px 40px rgba(0,0,0,0.1);
+  }
+  
+  .register-photo form {
+    display: table-cell;
+    width: 400px;
+    background-color: #282d67;
+    padding: 40px 60px;
+    color: #150e0e;
+  }
+  
+  .register-photo form h2 {
+    font-size:24px;
+    line-height:1.5;
+    margin-bottom:30px;
+  }
+
+  .here {
+    color: #c69c27 !important;
+  }
+  
+  .register-photo form .form-control {
+    background: #282d67;
+    border:none;
+    border-bottom:1px solid #dfe7f1;
+    border-radius:0;
+    box-shadow:none;
+    outline:none;
+    color:inherit;
+    text-indent:6px;
+    height:40px;
+  }
+  
+  .register-photo form .form-check {
+    font-size:13px;
+    line-height:20px;
+  }
+  
+  .register-photo form .btn-primary {
+    background: #7c2f61;
+    border:none;
+    border-radius:4px;
+    padding:11px;
+    box-shadow:none;
+    margin-top:35px;
+    text-shadow:none;
+    outline:none !important;
+  }
+  
+  .register-photo form .btn-primary:hover, .register-photo form .btn-primary:active {
+    background:#eb3b60;
+  }
+  
+  .register-photo form .btn-primary:active {
+    transform:translateY(1px);
+  }
+  
+  .register-photo form .already {
+    display:block;
+    text-align:center;
+    font-size:12px;
+    color:#6f7a85;
+    opacity:0.9;
+    text-decoration:none;
+  }
+
+  .user-index-song {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background-color: hwb(242deg 27% 40% / 10%);
+    margin-top: 2px;
+  }
+
+  .user-index-song a {
+    color: #ced2f3;
+    text-decoration: none;
+  }
+
+  .albums-index {
+    justify-content: space-evenly;
+  }
+
+  .one-album {
+    max-height: 200px;
+  }
+
+  .card {
+    margin-bottom: 20px;
+    --bs-card-border-color: rgb(88 87 140);
+    --bs-card-bg: #171447;
+  }
+
+  .card img {
+    padding-top: 5px;
+  }
+
+  .footer-padding {
+    padding: 1rem !important;
+    margin-top: 2em;
+  }
+  .footer-padding::after {
+    content: "\0000a0";
+  }
+
+  .new-item-container h3 {
+    color: #f8c333;
+  }
+
+  .new-item-container h4 {
+    color: #697482;
+  }
+
+  .new-item-container p {
+    color: #697482;
+  }
+
+  .albums-index {
+    color: #d2d3d4;
+  }
+
+  .albums-index, .artists-index a {
+    text-decoration: none;
+    font-size: larger;
+  }
+
+  .form-control-plaintext {
+    color: #d2d3d4;
+  }
+
+  .home-container-left {
+    color: #d2d3d4;
+  }
+
+  .artists-index h3, h4 {
+    color: #d2d3d4;
+  }
+
+  .albums-index .songs {
+    margin-top: 1em;
+  }
+
+  .home-container-right img {
+    height: 30rem;
+  }
+
+  @media (max-width: 767px) { 
+    header {
+      height: 25vh;
+    }
+
+    .user-index-player audio{
+      height: 30px;
+    }
+  }
+
+  @media (max-width:991px) {
+    .register-photo form {
+      padding:40px;
+    }
+  }

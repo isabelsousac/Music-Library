@@ -1,18 +1,14 @@
 class AlbumsController < ApplicationController
-    before_action :get_user
-    before_action :get_album, only: [:show, :destroy]
+    before_action :get_album, only: [:show]
 
     def index
-        @albums = @user.albums
+        @albums = @current_user.albums
     end
 
     def show
     end
 
     private
-    def get_user
-        @user = User.find(params[:user_id])
-    end
 
     def get_album
         @album = Album.find(params[:id])

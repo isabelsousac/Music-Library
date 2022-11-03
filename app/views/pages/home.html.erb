@@ -1,41 +1,45 @@
 <% if @current_user.present? %>
-    <h1>Welcome, <%= @current_user.name.capitalize %>!</h1>
+    <h1 class="text-center">Discover new songs</h1>
+    <hr class="hr" />
 
-    <div id="carouselExampleCaptions" class="carousel slide" data-mdb-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="<%= @songs_to_be_displayed.first.album.image %>" class="d-block w-100" alt="album1"/>
-                <div class="carousel-caption d-md-block">
-                    <h5><%= @songs_to_be_displayed.first.name %></h5>
-                    <p><%= @songs_to_be_displayed.first.album.name %></p>
+    <div class="row .align-items-center">
+        <div class="col-md-3 like-dislike-container">
+            <%= link_to image_tag("dislike.png", class: 'fa-lg'), dislike_path  %>
+        </div>
+
+        <div class="col-md-6">
+            <div class="player-background row">
+                <div class="col-md-4">
+                    <img class="album-player thumbnail-box-shadow rounded float-start" src="<%= @song_to_be_displayed.album.image %>" alt="album">
                 </div>
-            </div>
-            <div class="carousel-item active">
-                <img src="<%= @songs_to_be_displayed[1].album.image %>" class="d-block w-100" alt="album2"/>
-                <div class="carousel-caption d-md-block">
-                    <h5><%= @songs_to_be_displayed[1].name %></h5>
-                    <p><%= @songs_to_be_displayed[1].album.name %></p>
+                <div class="col-md-8 player-container">
+                    <h5><%= @song_to_be_displayed.name %></h5>
+                    <p><%= @song_to_be_displayed.album.name %></p>
                     <audio controls>
-                        <source src="<%= @songs_to_be_displayed.first.preview_url %>" type="audio/ogg">
-                        <source src="<%= @songs_to_be_displayed.first.preview_url %>" type="audio/mpeg">
-                        <source src="<%= @songs_to_be_displayed.first.preview_url %>" type="audio/wav">
+                        <source src="<%= @song_to_be_displayed.preview_url %>" type="audio/ogg">
+                        <source src="<%= @song_to_be_displayed.preview_url %>" type="audio/mpeg">
+                        <source src="<%= @song_to_be_displayed.preview_url %>" type="audio/wav">
                     </audio>
                 </div>
             </div>
         </div>
-        
-        <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        <div class="col-md-3 like-dislike-container">
+            <%= link_to image_tag("like.png", class: 'fa-lg'), "/like/#{@song_to_be_displayed.id}"%>
+        </div>
     </div>
 
-
 <% else %>
-    <h1>Welcome to our freshly made music library</h1>
-    <h3>Make an account if you don't have one, so you can enjoy more of this idea.</h3>
+
+    <div class='row .align-items-center'>
+        <div class='col-md-6'>
+            <div class='home-container-left'>
+                <h1>Music Library</h1>
+                <h4>You don't need to listen for an entire song to know if you like it or not.</h4>
+                
+                <hr>
+                <h5>If you still is not a member, sign up to dive in in this idea!</h5>
+                <%= link_to 'Sign Up', new_user_path %>
+            </div>
+        </div>
+    </div>
 <% end %>

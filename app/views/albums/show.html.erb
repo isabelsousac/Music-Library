@@ -1,12 +1,16 @@
-<div>
-    <h1><%= @album.name %></h1>
+<div class="overflow-auto albums-index">
+    <%= image_tag @album.image, class: 'one-album' %>
 
+    <h2><%= @album.name %></h2>
+    <p><%= @album.released_year.strftime("%B %d, %Y") %></p>
     <h3>Artist</h3>
-    <p><%= link_to "#{@album.artist.name}", user_artist_path(@user, @album.artist.id) %></p>
-    <h3>Songs you have from this album</h3>
+    <%= link_to "#{@album.artist.name}", artist_path(@album.artist.id), class: 'second after' %>
+    <h3 class="songs">Songs you have from this album</h3>
+    <div class="overflow-auto">
     <% @album.songs.each do |song| %>
         <ul>
-            <li><%= link_to "#{song.name}", user_song_path(@user, song.id) %></li>
+            <li><%= link_to "#{song.name}", song_path(song.id) %></li>
         </ul>
     <% end %>
+    </div>
 </div>

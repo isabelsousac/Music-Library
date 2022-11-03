@@ -1,0 +1,14 @@
+<div class='row'>
+    <% @songs.each do |song| %>
+        <div class="col-md-8 user-index-song">
+            <li><%= link_to "#{song.name}", song_path(song.id) %></li>
+        </div>
+        <div class="col-md-4 user-index-player">
+            <audio controls>
+                <source src="<%= song.preview_url %>" type="audio/ogg">
+                <source src="<%= song.preview_url %>" type="audio/mpeg">
+                <source src="<%= song.preview_url %>" type="audio/wav">
+            </audio>
+        </div>
+    <% end %>
+</div>
