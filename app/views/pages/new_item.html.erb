@@ -1,23 +1,25 @@
 <div class="new-item-container">
     <h3>We appreciate your help by adding new songs. Doing so, we can build a strong database and the music community can find more songs!</h3>
 
-    <% flash.each do |type, msg| %>
-        <div class="alert alert-info"> <%= msg %> </div>
+    <% flash.each do |key, msg| %>
+        <div class="alert <%= flash_class(key) %> alert-dismissible fade show text-center"> 
+            <%= msg %> 
+        </div>
     <% end %>
 
 
     <h4 style="margin-bottom: 2em;">You just need to grab the Spotify's link from the song you want.</h4>
 
-    <%= form_tag new_item_path, {:class => 'row g-3'} do %>
-        <div class="col-auto">
-            <%= label_tag 'URL', nil, class: 'form-control-plaintext' %>
+    <div class="register-photo">
+        <div class="form-container">
+            <%= form_tag new_item_path do %>
+                <div class="form-group">
+                    <%= url_field_tag :url, nil, placeholder: 'URL', :class => 'form-control' %>
+                </div>
+                <div class="form-group">
+                    <%= submit_tag 'Feed database', class: 'btn btn-primary btn-block mb-4'  %>
+                </div>
+            <% end %>
         </div>
-        <div class="col-auto">
-            <%= url_field_tag :url %>
-        </div>
-
-        <div class="col-auto">
-            <%= submit_tag 'Feed database', class: 'btn btn-primary mb-3 new-item-buttom'  %>
-        </div>
-    <% end %>
+    </div>
 </div>

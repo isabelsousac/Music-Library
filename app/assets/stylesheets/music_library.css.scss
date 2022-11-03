@@ -75,8 +75,8 @@ body {
 }
 
 .dropdown-menu {
-  --bs-dropdown-bg: #697482;
-  --bs-dropdown-border-color: rgb(110 123 136);
+  --bs-dropdown-bg: #e9c668;
+  --bs-dropdown-border-color: #cbac57;
 }
 
 h1 {
@@ -231,6 +231,10 @@ audio {
 
   .new-item-container h4 {
     color: #697482;
+  }
+
+  .new-item-container .register-photo {
+    padding: 25px 0;
   }
 
   .new-item-container p {

@@ -12,24 +12,26 @@ class PagesController < ApplicationController
 			spotify_id = params[:url].scan(/https?:\/\/(?:open\.)?spotify\.com\/track\/(\w*)/)[0][0]
 			RSpotify::Track.find(spotify_id)
 		rescue Exception => e
-			puts e
 			flash[:alert] = "We coudn't find a song through this URL :( - Make sure you are copying a URL's track from Spotify."
 			redirect_to new_item_path
+			return
 		end
 
 		if Song.exists?(spotify_id: fetched_song.id)
 			flash[:alert] = "This song is already in our database."
  		    redirect_to new_item_path
+			return
 		elsif !fetched_song.preview_url
 			flash[:alert] = "Unfortunately this song doesn't have a sample track :("
  		    redirect_to new_item_path
+			return
 		else
 			artist = create_artist(fetched_song.artists.first)
 			album = create_album(fetched_song.album, artist)
 			song = Song.create :name => fetched_song.name, :spotify_id => fetched_song.id, :preview_url => fetched_song.preview_url, :artist => artist, :album => album
 			@current_user.songs << song
 			flash[:notice] = "Thanks for feeding our music library!"
-			redirect_to root_path
+			redirect_to new_item_path
 		end
 	end
 

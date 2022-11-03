@@ -1,5 +1,7 @@
-<% flash.each do |type, msg| %>
-    <div class="alert alert-info"> <%= msg %> </div>
+<% flash.each do |key, msg| %>
+    <div class="alert <%= flash_class(key) %> alert-dismissible fade show text-center">
+        <%= msg %> 
+     </div>
 <% end %>
 
 <div class="register-photo">
