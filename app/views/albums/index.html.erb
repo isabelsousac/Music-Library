@@ -1,7 +1,7 @@
 <% if @albums.empty? %>
     <h1>You don't have any albums yet :( </h1>
 <% else %>
-    <h1>Albums that includes the songs you like</h1>
+    <h1>Your albums</h1>
     <div class='row albums-index'>
     <% @albums.each do |album| %>
         <div class="card col-md-4" style="width: 18rem;">
