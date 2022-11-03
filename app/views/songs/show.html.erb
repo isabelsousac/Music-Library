@@ -1,4 +1,4 @@
-<div>
+<div class="songs-index">
     <h1><%= @song.name %></h1>
 
     <h3>Artist</h3>
@@ -7,6 +7,6 @@
     <li><%= link_to "#{@song.album.name}", album_path(@song.album.id) %></li>
 
     <div>
-        <%= link_to 'Delete Song', song_path, :method => 'delete', :data => {:confirm => 'Are you sure?'} %>
+        <%= link_to 'Delete Song', song_path, :method => 'delete', :data => {:confirm => 'Are you sure?'}, class: 'btn btn-primary btn-block mb-4' %> 
     </div>
 </div>

@@ -195,6 +195,25 @@ audio {
     text-decoration:none;
   }
 
+  .songs-index .btn-primary {
+    background: #7c2f61;
+    border:none;
+    border-radius:4px;
+    padding:6px;
+    box-shadow:none;
+    margin-top:25px;
+    text-shadow:none;
+    outline:none !important;
+  }
+
+  .songs-index .btn-primary:hover, .btn-primary:active {
+    background:#eb3b60;
+  }
+
+  .songs-index .btn-primary:active {
+    transform:translateY(1px);
+  }
+
   .user-index-song {
     display: flex;
     align-items: center;
@@ -255,7 +274,7 @@ audio {
     color: #d2d3d4;
   }
 
-  .albums-index, .artists-index a {
+  .albums-index, .artists-index, .songs-index a {
     text-decoration: none;
     font-size: larger;
   }
@@ -271,6 +290,16 @@ audio {
   .artists-index h3, h4 {
     color: #d2d3d4;
   }
+
+
+  .albums-index h3, h4 {
+    color: #d2d3d4;
+  }
+
+  .songs-index h3, h4 {
+    color: #d2d3d4;
+  }
+
 
   .albums-index .songs {
     margin-top: 1em;
