@@ -8,11 +8,11 @@
         </div>
 
         <div class="col-md-6">
-            <div class="player-background row">
-                <div class="col-md-4">
+            <div class="player-background">
+                <div class="player-image">
                     <img class="album-player thumbnail-box-shadow rounded float-start" src="<%= @song_to_be_displayed.album.image %>" alt="album">
                 </div>
-                <div class="col-md-8 player-container">
+                <div class="player-container">
                     <h5><%= @song_to_be_displayed.name %></h5>
                     <p><%= @song_to_be_displayed.album.name %></p>
                     <audio controls>

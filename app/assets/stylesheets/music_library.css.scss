@@ -55,15 +55,11 @@ body {
     font-family: 'Archivo Narrow', sans-serif;
 }
 
-.player-container {
-  flex-grow: 1;
-  width: auto;
-}
-
 .like-dislike-container {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: initial;
 }
 
 .navbar-nav .dropdown-menu {
@@ -89,8 +85,22 @@ h1 {
     height: 15em;
     border-radius: 10px;
     display: flex;
+    margin: 1.5em;
     align-items: center;
     flex-wrap: nowrap;
+}
+
+.player-background > * {
+  flex: 0 0 auto;
+  padding: 0.75rem;
+}
+
+.player-container {
+  flex-grow: 1;
+  width: 66.66666%;
+}
+.player-image {
+  width: 33.333333%;
 }
 
 audio {
@@ -131,9 +141,9 @@ audio {
   }
   
   .register-photo form h2 {
-    font-size:24px;
-    line-height:1.5;
-    margin-bottom:30px;
+    font-size: 24px;
+    line-height: 1.5;
+    margin-bottom: 30px;
   }
 
   .here {
@@ -283,5 +293,8 @@ audio {
   @media (max-width:991px) {
     .register-photo form {
       padding:40px;
+    }
+    .like-dislike-container {
+      padding: 1em;
     }
   }
