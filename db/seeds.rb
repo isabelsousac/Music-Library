@@ -5,6 +5,10 @@ albums = []
 songs = []
 
 playlist_tracks.each do |track|
+    if !track.preview_url
+        next
+    end
+
     artist_name = track.artists.first.name
     artist_id = track.artists.first.id
     artists << {:name => artist_name, :id => artist_id}
